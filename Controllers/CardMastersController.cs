@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using _3LineCardMgtLimited.DAL;
 using _3LineCardMgtLimited.Models;
+using _3LineCardMgtLimited.Security;
 
 namespace _3LineCardMgtLimited.Controllers
 {
@@ -17,13 +18,15 @@ namespace _3LineCardMgtLimited.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/CardMasters
+        /* GET: api/CardMasters
         public IQueryable<CardMaster> GetcardMasters()
         {
             return db.cardMasters;
         }
+        */
 
         // GET: api/CardMasters/5
+        [HeaderAuthenticationAttribute]
         [ResponseType(typeof(CardMaster))]
         public IHttpActionResult GetCardMaster(int id)
         {
@@ -37,13 +40,15 @@ namespace _3LineCardMgtLimited.Controllers
         }
 
         // verifiedCard: api/CardMasters
+        [HeaderAuthenticationAttribute]
         public IQueryable<CardMaster> verifiedCardMasters()
         {
             return db.cardMasters;
         }
-        
+
 
         // verifiedCard: api/CardMasters/5
+        [HeaderAuthenticationAttribute]
         [ResponseType(typeof(CardMaster))]
         public IHttpActionResult verifiedCardMaster(string cardNumber)
         {
@@ -76,6 +81,7 @@ namespace _3LineCardMgtLimited.Controllers
             return Ok(cardMaster);
         }
         // PUT: api/CardMasters/5
+        [HeaderAuthenticationAttribute]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCardMaster(int id, CardMaster cardMaster)
         {
@@ -112,6 +118,7 @@ namespace _3LineCardMgtLimited.Controllers
         }
 
         // POST: api/CardMasters
+        [HeaderAuthenticationAttribute]
         [ResponseType(typeof(CardMaster))]
         public IHttpActionResult PostCardMaster(CardMaster cardMaster)
         {
@@ -127,6 +134,7 @@ namespace _3LineCardMgtLimited.Controllers
         }
 
         // DELETE: api/CardMasters/5
+        [HeaderAuthenticationAttribute]
         [ResponseType(typeof(CardMaster))]
         public IHttpActionResult DeleteCardMaster(int id)
         {
